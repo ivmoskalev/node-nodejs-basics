@@ -3,7 +3,7 @@ import os from 'os';
 
 const performCalculations = async () => {
     const numCores = os.cpus().length;
-    let workers = [];
+    let workers = new Array(numCores);
     // let results = new Array(numCores);
     let startIndex = 10;
     const workerUrl = new URL('./worker.js', import.meta.url);
@@ -16,7 +16,7 @@ const performCalculations = async () => {
     });
 
     for (let i = 0; i < numCores; i++) {
-        workers.push(calculateFibonacci(startIndex + i));
+        workers[i] = calculateFibonacci(startIndex + i);
     }
     const results = await Promise.all(workers);
     console.log(results);
