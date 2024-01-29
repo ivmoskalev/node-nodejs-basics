@@ -4,7 +4,6 @@ import os from 'os';
 const performCalculations = async () => {
     const numCores = os.cpus().length;
     let workers = new Array(numCores);
-    // let results = new Array(numCores);
     let startIndex = 10;
     const workerUrl = new URL('./worker.js', import.meta.url);
 
